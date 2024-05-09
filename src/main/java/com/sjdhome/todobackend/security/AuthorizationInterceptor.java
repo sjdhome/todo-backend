@@ -1,11 +1,14 @@
 package com.sjdhome.todobackend.security;
 
+import com.sjdhome.todobackend.user.User;
 import jakarta.annotation.Nonnull;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Component;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
+
+import java.util.Optional;
 
 @Component
 public class AuthorizationInterceptor implements HandlerInterceptor {
