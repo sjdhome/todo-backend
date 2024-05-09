@@ -1,8 +1,6 @@
 package com.sjdhome.todobackend.todo;
 
 import com.sjdhome.todobackend.BaseRepository;
-import com.sjdhome.todobackend.category.Category;
-import com.sjdhome.todobackend.tag.Tag;
 import com.sjdhome.todobackend.user.User;
 import org.springframework.stereotype.Repository;
 
