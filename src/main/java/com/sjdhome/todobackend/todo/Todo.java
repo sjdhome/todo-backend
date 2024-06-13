@@ -1,13 +1,6 @@
 package com.sjdhome.todobackend.todo;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
-public record Todo(
-        long id,
-        String title,
-        String description,
-        boolean completed,
-        Date datetime,
-        boolean flagged
-) {
+public record Todo(Long id, Long categoryId, String title, String description, Boolean completed, Timestamp datetime, Boolean flagged) {
 }

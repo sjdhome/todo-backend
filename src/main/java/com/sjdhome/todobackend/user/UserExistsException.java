@@ -1,4 +1,4 @@
 package com.sjdhome.todobackend.user;
 
-public class UserExistsException extends Exception {
+public class UserExistsException extends RuntimeException {
 }
