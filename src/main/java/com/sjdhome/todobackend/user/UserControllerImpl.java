@@ -15,7 +15,6 @@ import java.util.Optional;
 @CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("/user")
 public class UserControllerImpl implements UserController {
-    private static final Logger log = LoggerFactory.getLogger(UserControllerImpl.class);
     private final UserSecurityService userSecurityService;
     private final UserRepository userRepository;
 

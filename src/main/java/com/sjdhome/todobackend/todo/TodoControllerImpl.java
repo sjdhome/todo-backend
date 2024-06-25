@@ -10,6 +10,7 @@ import com.sjdhome.todobackend.user.security.UserSecurityService;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.Timestamp;
+import java.time.ZonedDateTime;
 import java.util.*;
 
 @RestController
@@ -113,14 +114,14 @@ public class TodoControllerImpl implements TodoController {
         if (_datetime == null) {
             datetime = null;
         } else {
-            datetime = new Timestamp(Long.parseLong(Objects.toString(_datetime)));
+            datetime = new Timestamp(ZonedDateTime.parse(Objects.toString(_datetime)).toInstant().toEpochMilli());
         }
         final Boolean flagged = (Boolean) payload.get("flagged");
         if (title == null || description == null || completed == null || flagged == null) {
             String situation = String.format("%s, %s, %s, %s, %s", title, description, completed, flagged, categoryId);
             throw new IllegalArgumentException("Need full information to create a todo: " + situation);
         }
-        Todo todo = new Todo(null, user.id(), title, description, completed, datetime, flagged);
+        Todo todo = new Todo(null, categoryId, title, description, completed, datetime, flagged);
         return todoRepository.insert(todo);
     }
 
@@ -141,10 +142,10 @@ public class TodoControllerImpl implements TodoController {
         if (_datetime == null) {
             datetime = oldTodo.datetime();
         } else {
-            datetime = new Timestamp(Long.parseLong(Objects.toString(_datetime)));
+            datetime = new Timestamp(ZonedDateTime.parse(Objects.toString(_datetime)).toInstant().toEpochMilli());
         }
         final Boolean flagged = Objects.requireNonNullElse((Boolean) payload.get("flagged"), oldTodo.flagged());
-        Todo todo = new Todo(id, user.id(), title, description, completed, datetime, flagged);
+        Todo todo = new Todo(id, oldTodo.categoryId(), title, description, completed, datetime, flagged);
         todoRepository.update(id, todo);
         return id;
     }
